@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import fetch from 'superagent';
+import request from 'superagent';
 import Header from './Header.js'
 import RogueList from './RogueList.js';
 
@@ -9,14 +9,12 @@ export default class RoguesPage extends Component {
         loading: false,
     }
     componentDidMount = async () => {
-        const rogue = await fetch.get(`https://salty-meadow-30783.herokuapp.com/rogues`)
+        const rogue = await request.get(`https://salty-meadow-30783.herokuapp.com/rogues`)
 
         this.setState({
             rogues: rogue.body,
             loading: false
         })
-
-        console.log(this.state.rogues)
     }
 
     handleBoolean = async (e) => {

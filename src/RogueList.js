@@ -8,9 +8,9 @@ export default class RogueList extends Component {
                 <h1 className="alias">{this.props.rogues.alias}</h1>
                 <h2>{this.props.rogues.name}</h2>
                 <p className="alive">Status: <Boolean alive={this.props.rogues.alive}/></p>
-                <p className="year-introduced">Year Introduced: 
+                <div className="year-introduced">Year Introduced: 
                 <p className="year">{this.props.rogues.year}</p>
-                </p>
+                </div>
             </div>
         )
     }
