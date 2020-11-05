@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import request from 'superagent';
 
 const userNumber = {
-    userId: 1
+    user_id: 1
 };
 
 export default class CreatePage extends Component {
@@ -20,14 +20,14 @@ export default class CreatePage extends Component {
         e.preventDefault();
 
         const newRogue = {
-            user_id: userNumber.userId,
+            user_id: userNumber.user_id,
             alias: this.state.alias,
             name: this.state.name,
             alive: this.state.alive,
             year: this.state.year,
-            category: this.state.category
+            category_id: this.state.category_id
         };
-
+        console.log(newRogue);
         await request
             .post('https://salty-meadow-30783.herokuapp.com/rogues')
             .send(newRogue);
@@ -36,7 +36,7 @@ export default class CreatePage extends Component {
     }
 
     handleChangeCategory = (e) => {
-        this.setState({ category: e.target.value })
+        this.setState({ category_id: e.target.value })
     }
 
     handleChangeBoolean = (e) => {
