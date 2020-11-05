@@ -46,34 +46,34 @@ export default class CreatePage extends Component {
     render() {
         return (
             <div>
-                <h3>Add A Rogue</h3>
+                <h3 className="header">Add A Rogue</h3>
                 <form onSubmit={(this.handleSubmit)}>
                     <label>
                         Alias:
-                        <input onChange={e => this.setState({ alias: e.target.value })} />
+                        <br /><input onChange={e => this.setState({ alias: e.target.value })} />
                     </label>
 
                     <label>
-                        Name:
-                        <input onChange={e => this.setState({ name: e.target.value })} />
+                        <br />Name:
+                        <br /><input onChange={e => this.setState({ name: e.target.value })} />
                     </label>
 
                     <label>
-                        Is Rogue Alive?:
-                        <select onChange={this.handleChangeBoolean}>
+                        <br />Is Rogue Alive?:
+                        <br /><select onChange={this.handleChangeBoolean}>
                             <option value="true">Yes</option>
                             <option value="false">No</option>
                         </select>
                     </label>
 
                     <label>
-                        Year Introduced:
-                        <input onChange={e => this.setState({ year: e.target.value })} type="number" />
+                        <br />Year Introduced:
+                        <br /><input onChange={e => this.setState({ year: e.target.value })} type="number" />
                     </label>
 
                     <label>
-                        Category:
-                        <select onChange={this.handleChangeCategory}>
+                        <br />Category:
+                        <br /><select onChange={this.handleChangeCategory}>
                             {
                                 this.state.categories.map(category => <option key={category.id} value={category.id}>
                                     {category.name}
@@ -81,7 +81,7 @@ export default class CreatePage extends Component {
                             }
                         </select>
                     </label>
-                    <button className="submit">Submit</button>
+                    <br /><button className="submit">Submit</button>
                 </form>
             </div>
         )

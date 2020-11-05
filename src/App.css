@@ -33,6 +33,17 @@ html {
   color: yellow;
 }
 
+.add {
+  font-family: Hackney;
+  font-size: 30pt;
+  text-decoration: none;
+  color: white;
+}
+
+.add:hover {
+  color: yellow;
+}
+
 .rogues {
   display: grid;
   grid-template-columns: 300px 300px 300px;
@@ -50,6 +61,32 @@ h2 {
   margin-top: 5px;
   font-size: 18pt;
   font-family: Oranienbaum;
+}
+
+label {
+  font-family: Hackney;
+  font-size: 30pt;
+}
+
+input {
+  height: 37px;
+  font-family: Oranienbaum;
+  font-size: 21pt;
+  margin-bottom: 10pt;
+}
+
+select {
+  height: 37px;
+  font-family: Oranienbaum;
+  font-size: 21pt;
+  margin-bottom: 10pt;
+}
+
+button {
+  height: 37px;
+  font-family: Oranienbaum;
+  font-size: 21pt;
+  margin-top: 20px;
 }
 
 .year {
