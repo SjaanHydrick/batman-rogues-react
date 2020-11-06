@@ -17,10 +17,6 @@ export default class RoguesPage extends Component {
         })
     }
 
-    handleBoolean = async (e) => {
-        
-    }
-
     render() {
         return (
             <div>

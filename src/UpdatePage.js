@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+
 import {
     fetchCategories,
     updateRogue,
@@ -18,7 +19,7 @@ export default class UpdatePage extends Component {
         name: '',
         alive: true,
         year: 0,
-        category_id: 1
+        category: ''
     }
 
     componentDidMount = async () => {
@@ -32,12 +33,13 @@ export default class UpdatePage extends Component {
 
         this.setState({
             categories: categories,
-            category: matchingCategory.name,
+            category: matchingCategory.id,
             alias: rogue.alias,
             name: rogue.name,
             alive: rogue.alive,
             year: rogue.year,
         });
+        console.log(this.state.category)
     }
 
     handleSubmit = async (e) => {
@@ -70,21 +72,22 @@ export default class UpdatePage extends Component {
     render() {
         return (
             <div>
-                <h4>Update Rogue</h4>
+                <h4 className="header">Update Rogue</h4>
+
                 <form onSubmit={this.handleSubmit}>
                 <label>
                         Alias:
-                        <br /><input onChange={e => this.setState({ alias: e.target.value })} />
+                        <br /><input onChange={e => this.setState({ alias: e.target.value })} placeholder={this.state.alias} />
                     </label>
 
                     <label>
                         <br />Name:
-                        <br /><input onChange={e => this.setState({ name: e.target.value })} />
+                        <br /><input onChange={e => this.setState({ name: e.target.value })} placeholder={this.state.name}/>
                     </label>
 
                     <label>
                         <br />Is Rogue Alive?:
-                        <br /><select onChange={this.handleChangeBoolean}>
+                        <br /><select onChange={this.handleChangeBoolean} value={this.state.alive}>
                             <option value="true">Yes</option>
                             <option value="false">No</option>
                         </select>
@@ -92,14 +95,16 @@ export default class UpdatePage extends Component {
 
                     <label>
                         <br />Year Introduced:
-                        <br /><input onChange={e => this.setState({ year: e.target.value })} type="number" />
+                        <br /><input onChange={e => this.setState({ year: e.target.value })} type="number" placeholder={this.state.year}/>
                     </label>
 
                     <label>
                         <br />Category:
-                        <br /><select onChange={this.handleChangeCategory}>
+                        <br /><select onChange={this.handleChangeCategory} value={this.state.category}>
                             {
-                                this.state.categories.map(category => <option key={category.id} value={category.id}>
+                                this.state.categories.map(category => <option 
+                                key={category.id} 
+                                value={category.id}>
                                     {category.name}
                                 </option>)
                             }

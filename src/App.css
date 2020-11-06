@@ -44,6 +44,22 @@ html {
   color: yellow;
 }
 
+.link-id {
+  text-decoration: none;
+  color: white;
+}
+
+.rogue {
+  border: solid 1px yellow;
+  margin: 10px;
+  border-radius: 75px;
+}
+
+.rogue:hover {
+  background-color: crimson;
+  transition-duration: 2s;
+}
+
 .rogues {
   display: grid;
   grid-template-columns: 300px 300px 300px;
@@ -61,6 +77,11 @@ h2 {
   margin-top: 5px;
   font-size: 18pt;
   font-family: Oranienbaum;
+}
+
+h4 {
+  margin-top: 40px;
+  margin-bottom: 20px;
 }
 
 label {
@@ -92,4 +113,8 @@ button {
 .year {
   margin-top: 0;
   color: cornflowerblue;
+}
+
+.delete {
+  margin-bottom: 30px;
 }
