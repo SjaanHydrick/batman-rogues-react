@@ -1,55 +1,78 @@
 import React, { Component } from 'react'
-import request from 'superagent';
+import {
+    fetchCategories,
+    updateRogue,
+    fetchRogue,
+    deleteRogue
+} from './fetches.js'
 
 const userNumber = {
     user_id: 1,
 };
 
-export default class CreatePage extends Component {
+export default class UpdatePage extends Component {
+
     state = {
         categories: [],
-        alive: true
+        alias: '',
+        name: '',
+        alive: true,
+        year: 0,
+        category_id: 1
     }
 
     componentDidMount = async () => {
-        const response = await request.get('https://salty-meadow-30783.herokuapp.com/categories')
+        const categories = await fetchCategories();
+        const rogue = await fetchRogue(this.props.match.params.id);
+        const categoryNameAsString = rogue.category;
 
-        this.setState({ categories: response.body });
+        const matchingCategory = categories.find((category) => {
+            return category.id === categoryNameAsString
+        });
+
+        this.setState({
+            categories: categories,
+            category: matchingCategory.name,
+            alias: rogue.alias,
+            name: rogue.name,
+            alive: rogue.alive,
+            year: rogue.year,
+        });
     }
 
     handleSubmit = async (e) => {
         e.preventDefault();
 
-        const newRogue = {
-            user_id: userNumber.user_id,
-            alias: this.state.alias,
-            name: this.state.name,
-            alive: this.state.alive,
-            year: this.state.year,
-            category_id: this.state.category_id
-        };
-        console.log(newRogue);
-        await request
-            .post('https://salty-meadow-30783.herokuapp.com/rogues')
-            .send(newRogue);
+        await updateRogue(
+            this.props.match.params.id,
+            {
+                user_id: userNumber.user_id,
+                alias: this.state.alias,
+                name: this.state.name,
+                alive: this.state.alive,
+                year: this.state.year,
+                category_id: this.state.category_id
+            });
 
-        this.props.history.push('/')
+            this.props.history.push('/');
     }
 
-    handleChangeCategory = (e) => {
+    handleChange = (e) => {
         this.setState({ category_id: e.target.value })
     }
 
-    handleChangeBoolean = (e) => {
-        this.setState({ alive: e.target.value })
+    handleDelete = async (e) => {
+        await deleteRogue(this.props.match.params.id);
+
+        this.props.history.push('/');
     }
 
     render() {
         return (
             <div>
-                <h3 className="header">Add A Rogue</h3>
-                <form onSubmit={(this.handleSubmit)}>
-                    <label>
+                <h4>Update Rogue</h4>
+                <form onSubmit={this.handleSubmit}>
+                <label>
                         Alias:
                         <br /><input onChange={e => this.setState({ alias: e.target.value })} />
                     </label>
@@ -84,6 +107,8 @@ export default class CreatePage extends Component {
                     </label>
                     <br /><button className="submit">Submit</button>
                 </form>
+                <br />
+                <button className="delete" onClick={this.handleDelete}>Delete Rogue</button>
             </div>
         )
     }
