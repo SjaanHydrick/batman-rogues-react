@@ -104,7 +104,7 @@ export default class UpdatePage extends Component {
 
                     <label>
                         <br />Category:
-                        <br /><select onChange={this.handleChangeCategory} value={this.state.category}>
+                        <br /><select onChange={this.handleChangeCategory} value={this.state.category_id}>
                             {
                                 this.state.categories.map(category => <option 
                                 key={category.id} 
