@@ -59,8 +59,12 @@ export default class UpdatePage extends Component {
             this.props.history.push('/');
     }
 
-    handleChange = (e) => {
+    handleChangeCategory = (e) => {
         this.setState({ category_id: e.target.value })
+    }
+
+    handleChangeBoolean = (e) => {
+        this.setState({ alive: e.target.value })
     }
 
     handleDelete = async (e) => {
